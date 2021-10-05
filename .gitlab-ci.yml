@@ -3,8 +3,12 @@ build-job:
   tags:
     - realworld-runner
   script:
-    - echo "Hello, $GITLAB_USER_LOGIN, building frontend image!"
+    - echo "Hello, $GITLAB_USER_LOGIN!"
+    - echo "Building frontend image.."
     - docker build -t realworld_frontend .
+    - docker image tag realworld_frontend eu.gcr.io/studentjamk/realworld_frontend
+    - echo "Pushing image to GCR.."
+    - docker image push eu.gcr.io/studentjamk/realworld_frontend
 
 # test-job1:
 #  stage: test
